@@ -1,0 +1,39 @@
+<mat-toolbar color="primary">
+  <span>Material Todo App</span>
+</mat-toolbar>
+
+<div class="container">
+  <mat-card>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>New Todo</mat-label>
+      <input
+        matInput
+        name="todo"
+        [(ngModel)]="newTodo"
+        placeholder="Enter todo"
+        (keyup.enter)="addTodo()"
+      />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width"
+      (click)="addTodo()"
+    >
+      Add Todo
+    </button>
+  </mat-card>
+
+  <mat-card *ngFor="let todo of todos" class="todo-card">
+    <mat-checkbox [checked]="todo.completed" (change)="toggleTodo(todo)">
+      <span [class.completed]="todo.completed">
+        {{ todo.title }}
+      </span>
+    </mat-checkbox>
+
+    <button mat-icon-button color="warn" (click)="deleteTodo(todo.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card>
+</div>

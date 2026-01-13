@@ -1,0 +1,17 @@
+.container {
+width: 300px;
+margin: 40px auto;
+}
+
+
+.completed {
+text-decoration: line-through;
+color: gray;
+}
+
+
+li {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}

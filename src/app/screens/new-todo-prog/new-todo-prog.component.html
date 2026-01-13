@@ -1,0 +1,17 @@
+<h2>Axios Todo List</h2>
+
+<div *ngIf="loading">Loading...</div>
+
+<ul>
+  <li *ngFor="let todo of todos">
+    <input
+      type="checkbox"
+      [checked]="todo.completed"
+      (change)="toggle(todo)"
+    />
+    {{ todo.title }}
+    <button (click)="delete(todo.id)">Delete</button>
+  </li>
+</ul>
+
+

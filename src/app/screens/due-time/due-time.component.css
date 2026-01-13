@@ -1,0 +1,26 @@
+.todo-card {
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.todo-item {
+  max-width: 400px;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.date {
+  font-size: 12px;
+  color: gray;
+}
+
+.overdue {
+  border-left: 5px solid red;
+  background-color: #ffecec;
+}

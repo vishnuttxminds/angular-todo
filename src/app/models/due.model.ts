@@ -1,0 +1,6 @@
+export interface Due {
+  id: number;
+  title: string;
+  dueDate: string;
+  completed: boolean;
+}

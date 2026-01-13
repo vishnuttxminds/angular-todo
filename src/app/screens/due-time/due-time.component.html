@@ -1,0 +1,38 @@
+<mat-card class="todo-card">
+  <h2>Todo App with Due Date</h2>
+
+  <form [formGroup]="todoForm" (ngSubmit)="addTodo()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Todo Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Due Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dueDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="full-width">
+      Add Todo
+    </button>
+  </form>
+</mat-card>
+
+<mat-card *ngFor="let todo of todos" class="todo-item"
+          [ngClass]="{ overdue: isOverdue(todo) }">
+
+  <mat-checkbox (change)="toggleTodo(todo)" [checked]="todo.completed">
+    {{ todo.title }}
+  </mat-checkbox>
+
+  <span class="date">
+    Due: {{ todo.dueDate | date:'mediumDate' }}
+  </span>
+
+  <button mat-icon-button color="warn" (click)="deleteTodo(todo.id)">
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-card>
+
