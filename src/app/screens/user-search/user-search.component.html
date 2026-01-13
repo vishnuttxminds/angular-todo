@@ -1,0 +1,37 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>User Search</mat-card-title>
+
+    <!-- Search Input -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Search</mat-label>
+      <input matInput [formControl]="searchControl" placeholder="Search user" />
+    </mat-form-field>
+
+    <!-- Filter Chips -->
+    <mat-chip-set>
+      <mat-chip
+        (click)="setFilter('name')"
+        [class.active-chip]="activeFilter === 'name'"
+      >
+        Name
+      </mat-chip>
+
+      <mat-chip
+        (click)="setFilter('email')"
+        [class.active-chip]="activeFilter === 'email'"
+      >
+        Email
+      </mat-chip>
+    </mat-chip-set>
+  </mat-card>
+
+  <!-- User Cards -->
+  <mat-card class="user-card" *ngFor="let user of filteredUsers">
+    <mat-card-title>{{ user.name }}</mat-card-title>
+    <mat-card-content>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

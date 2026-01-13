@@ -23,6 +23,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NewTodoProgComponent } from './screens/new-todo-prog/new-todo-prog.component';
 import { PostsComponent } from './screens/posts/posts.component';
+import { UserSearchComponent } from './screens/user-search/user-search.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { PostsComponent } from './screens/posts/posts.component';
     NewTodoProgComponent,
     DueTimeComponent,
     PostsComponent,
+    UserSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import { PostsComponent } from './screens/posts/posts.component';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    HttpClientModule   
+    HttpClientModule,
+    MatFormFieldModule,
+    MatChipsModule  
   ],
   providers: [],
   bootstrap: [AppComponent],

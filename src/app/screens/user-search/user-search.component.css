@@ -1,0 +1,17 @@
+.container {
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.user-card {
+  margin-top: 15px;
+}
+
+.active-chip {
+  background-color: #17df74 !important;
+  color: rgb(211, 190, 232) !important;
+}
