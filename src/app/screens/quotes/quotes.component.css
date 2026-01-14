@@ -1,0 +1,15 @@
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.quote {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.author {
+  text-align: right;
+  margin-top: 10px;
+  color: gray;
+}

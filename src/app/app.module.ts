@@ -26,6 +26,7 @@ import { PostsComponent } from './screens/posts/posts.component';
 import { UserSearchComponent } from './screens/user-search/user-search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
+import { QuotesComponent } from './screens/quotes/quotes.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatChipsModule } from '@angular/material/chips';
     DueTimeComponent,
     PostsComponent,
     UserSearchComponent,
+    QuotesComponent,
   ],
   imports: [
     BrowserModule,

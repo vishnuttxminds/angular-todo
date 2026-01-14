@@ -1,0 +1,22 @@
+<div class="container">
+
+  <mat-card>
+    <mat-card-title>Random Quote</mat-card-title>
+
+    <mat-card-content *ngIf="!loading; else loader">
+      <p class="quote">“{{ quote?.quote }}”</p>
+      <p class="author">— {{ quote?.author }}</p>
+    </mat-card-content>
+
+    <ng-template #loader>
+      <p>Loading...</p>
+    </ng-template>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="refreshQuote()">
+        Refresh Quote
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
