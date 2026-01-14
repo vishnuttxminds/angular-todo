@@ -1,48 +1,32 @@
 import { Injectable } from '@angular/core';
-import axios, { AxiosResponse } from 'axios';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Due as Todo } from 'src/app/models/due.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoApiService {
- private API_URL = 'https://jsonplaceholder.typicode.com/todos';
 
-  constructor() {}
+  private API_URL = 'https://jsonplaceholder.typicode.com/todos';
 
-  async getTodos(): Promise<Todo[]> {
-    try {
-      const response: AxiosResponse<Todo[]> = await axios.get(this.API_URL);
+  constructor(private http: HttpClient) {}
 
-      console.log("Response data:", response.data);
-
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching todos', error);
-      throw error;
-    }
+  // GET todos
+  getTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(this.API_URL);
   }
 
-  async updateTodo(todo: Todo): Promise<Todo> {
-    try {
-      const response: AxiosResponse<Todo> = await axios.put(
-        `${this.API_URL}/${todo.id}`,
-        todo
-      );
-      return response.data;
-    } catch (error) {
-      console.error('Error updating todo', error);
-      throw error;
-    }
+  // UPDATE todo
+  updateTodo(todo: Todo): Observable<Todo> {
+    return this.http.put<Todo>(
+      `${this.API_URL}/${todo.id}`,
+      todo
+    );
   }
 
-  // Delete todo
-  async deleteTodo(id: number): Promise<void> {
-    try {
-      await axios.delete(`${this.API_URL}/${id}`);
-    } catch (error) {
-      console.error('Error deleting todo', error);
-      throw error;
-    }
+  // DELETE todo
+  deleteTodo(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`);
   }
 }

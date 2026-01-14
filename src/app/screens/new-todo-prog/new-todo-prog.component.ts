@@ -7,7 +7,8 @@ import { TodoApiService } from 'src/app/service/todo-api.service';
   templateUrl: './new-todo-prog.component.html',
   styleUrls: ['./new-todo-prog.component.css']
 })
-export class NewTodoProgComponent  implements OnInit {
+export class NewTodoProgComponent implements OnInit {
+
   todos: Todo[] = [];
   loading = false;
 
@@ -17,34 +18,38 @@ export class NewTodoProgComponent  implements OnInit {
     this.loadTodos();
   }
 
-  async loadTodos() {
+  loadTodos() {
     this.loading = true;
-    try {
-      this.todos = await this.todoService.getTodos();
-      this.todos = this.todos.slice(0, 10); 
-    } catch (error) {
-      console.error(error);
-    } finally {
-      this.loading = false;
-    }
+
+    this.todoService.getTodos().subscribe({
+      next: (data: Todo[]) => {
+        this.todos = data.slice(0, 10);
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.loading = false;
+      }
+    });
   }
 
-  async toggle(todo: Todo) {
+  toggle(todo: Todo) {
     const updated = { ...todo, completed: !todo.completed };
-    try {
-      const res = await this.todoService.updateTodo(updated);
-      todo.completed = res.completed;
-    } catch (error) {
-      console.error(error);
-    }
+
+    this.todoService.updateTodo(updated).subscribe({
+      next: (res: Todo) => {
+        todo.completed = res.completed;
+      },
+      error: (err) => console.error(err)
+    });
   }
 
-  async delete(todoId: number) {
-    try {
-      await this.todoService.deleteTodo(todoId);
-      this.todos = this.todos.filter(t => t.id !== todoId);
-    } catch (error) {
-      console.error(error);
-    }
+  delete(todoId: number) {
+    this.todoService.deleteTodo(todoId).subscribe({
+      next: () => {
+        this.todos = this.todos.filter(t => t.id !== todoId);
+      },
+      error: (err) => console.error(err)
+    });
   }
 }
